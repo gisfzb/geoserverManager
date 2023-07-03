@@ -19,7 +19,7 @@ public class AppTest
 	public static void main(String[] args) throws MalformedURLException {
 		
 		//geoserver连接配置
-		String url = "http://localhost:8000/geoserver" ;
+		String url = "http://192.168.0.105:8080/geoserver" ;
 		String username = "admin" ; 
 		String passwd = "geoserver" ;
 		

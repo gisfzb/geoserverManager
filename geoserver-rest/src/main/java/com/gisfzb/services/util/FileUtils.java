@@ -1,5 +1,6 @@
 package com.gisfzb.services.util;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipFile;
 import org.apache.tools.zip.ZipOutputStream;
@@ -368,7 +369,7 @@ public class FileUtils {
         str.append(DateTimeUtil.formatDatetoString(time));
         str.append("/");
         str.append(DateTimeUtil.getSystemDate());
-        if(!ComUtil.isEmpty(tag)) {
+        if(StringUtils.isNotBlank(tag)) {
             str.append(tag);
         }
         str.append("-"+name);

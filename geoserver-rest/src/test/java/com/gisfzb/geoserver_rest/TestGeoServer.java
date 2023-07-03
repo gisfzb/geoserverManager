@@ -17,9 +17,9 @@ import java.util.List;
 public class TestGeoServer {
     public static void main(String[] args) throws Exception {
         //GeoServer的连接配置
-        String url = "http://39.103.145.109:8080/geoserver";
-        String username = "admin";
-        String passwd = "TBHHLY";
+        String url = "http://192.168.0.105:8080/geoserver" ;
+        String username = "admin" ;
+        String passwd = "geoserver" ;
 
         String ws = "test";     //待创建和发布图层的工作区名称workspace
         String store_name = "xian_img"; //待创建和发布图层的数据存储名称store
@@ -38,7 +38,7 @@ public class TestGeoServer {
 
         //判断数据存储（datastore）是否已经存在，不存在则创建
 
-        String fileName = "D:\\Temp\\西安市_卫图12_Level_12.tif";
+        String fileName = "/Users/fangzi/Downloads/1564520935465254912.tif";
 
         RESTDataStore restStore = manager.getReader().getDatastore(ws, store_name);
         if (restStore == null) {

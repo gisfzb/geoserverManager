@@ -4,6 +4,7 @@ import it.geosolutions.geoserver.rest.GeoServerRESTManager;
 import it.geosolutions.geoserver.rest.GeoServerRESTPublisher;
 import it.geosolutions.geoserver.rest.GeoServerRESTReader;
 import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -54,7 +55,7 @@ public class GeoServerUtil {
 
     public  static boolean  publishShpAndReloadStore(String workspace,String zipFilePath,String storeName,String layerName,String styleType,String coordinateSystem) throws  Exception{
         //坐标系,判断是否为空
-        if(ComUtil.isEmpty(coordinateSystem)){
+        if(StringUtils.isBlank(coordinateSystem)){
             coordinateSystem=GeoServerRESTPublisher.DEFAULT_CRS;
         }
         //存在相应的工作区
@@ -62,10 +63,10 @@ public class GeoServerUtil {
             publisher.createWorkspace(workspace);
         }
         boolean published;
-        if(Constant.AtlasStyleType.AtlasStyleType.equals(styleType)){
-            published = publisher.publishShp(workspace, storeName, layerName, new File(zipFilePath),coordinateSystem,
-                    new NameValuePair[]{new NameValuePair("charset", "GBK")});
-        }else{
+//        if(Constant.AtlasStyleType.equals(styleType)){
+//            published = publisher.publishShp(workspace, storeName, layerName, new File(zipFilePath),coordinateSystem,
+//                    new NameValuePair[]{new NameValuePair("charset", "GBK")});
+//        }else{
             //读取style文件
             String styleFile = bundle.getString("geoServer-dir")+"/"+styleType+".sld";
             File file  = new File(styleFile);
@@ -82,7 +83,7 @@ public class GeoServerUtil {
                     layerName, it.geosolutions.geoserver.rest.GeoServerRESTPublisher.UploadMethod.FILE,
                     //        zip图集的地址           坐标系         样式
                     new File(zipFilePath).toURI(),coordinateSystem, strStyle);
-        }
+//        }
         return published;
     }
 
